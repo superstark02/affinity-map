@@ -10,10 +10,10 @@
     - Zoom In/Out Affinity Map 
 
 ### Standard Mode
-![Add highlights](./sort.gif)
+![Add highlights](./standard.gif)
 
 ### Sorting Mode
-![Add bucket](./standard.gif)
+![Add bucket](./sort.gif)
 
 ### Grouping Highlights
 ![Pan And Zoom](./grouping.gif)
