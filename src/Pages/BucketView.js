@@ -115,10 +115,10 @@ class BucketView extends Component {
 
         for (var i = 0; i < arr.length; i++) {
             for (var j = 0; j < arr.length; j++) {
-                if (arr[i].x - arr[j].x < 233 && arr[i].x - arr[j].x > 0) {
+                if (arr[i].x - arr[j].x < 150 && arr[i].x - arr[j].x > 0) {
                     arr[i].bucket = arr[j].bucket;
                 }
-                else if (arr[j].x - arr[i].x < 233 && arr[j].x - arr[i].x > 0) {
+                else if (arr[j].x - arr[i].x < 150 && arr[j].x - arr[i].x > 0) {
                     arr[j].bucket = arr[i].bucket;
                 }
             }
