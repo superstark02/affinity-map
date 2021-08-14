@@ -102,15 +102,28 @@ class Group extends Component {
     }
 
     updateBucket = (e, id) => {
-        var i
-        for (i = 0; i < this.state.notes.length; i++) {
-            if (id == this.state.notes[i].id) {
-                break;
+
+        var sec = 1150 / this.state.buckets.length;
+
+        for (var k = 0; k < this.state.buckets.length; k++) {
+            if (e.x > (sec * k) + 150 && e.x < (sec * (k+1)) + 150) {
+                var i
+                for (i = 0; i < this.state.notes.length; i++) {
+                    if (id == this.state.notes[i].id) {
+                        break;
+                    }
+                }
+                var arr = this.state.notes
+
+                arr[i].bucket = this.state.buckets[k].id
+
+                this.setState({notes:arr})
             }
         }
-        var arr = this.state.notes
 
-        arr[i].x = e.x
+
+
+        /*arr[i].x = e.x
         arr[i].y = e.y
         rdb.ref().child("notes").child(i).update({ x: e.x, y: e.y })
 
@@ -124,10 +137,8 @@ class Group extends Component {
                 }
             }
         }
-
+        this.setState({ notes: arr })*/
         console.log(e)
-
-        this.setState({ notes: arr })
     }
 
     componentDidMount() {
@@ -159,8 +170,21 @@ class Group extends Component {
                 }
             }
 
-            this.setState({ buckets: buckets })
+            for (var j = 0; j < buckets.length; j++) {
+                for (var k = 0; k < buckets[j].highlights.length; k++) {
+
+                    var i = arr.indexOf(buckets[j].highlights[k])
+
+                    arr[i].x = 150 + ((1150 / buckets.length) * j);
+                    arr[i].y = k * 2;
+                }
+            }
+
             console.log(buckets)
+
+            this.setState({ buckets: buckets })
+            this.setState({ notes: arr })
+            //console.log(buckets)
         });
 
         rdb.ref().child("PanZoom").on('value', (snapshot) => {
@@ -225,17 +249,17 @@ class Group extends Component {
                                 <React.Fragment>
                                     <div style={{ minHeight: "90vh", width: "100vw" }} >
                                         {
-                                            this.state.notes.map(item => {
+                                            this.state.notes.map(note => {
                                                 return (
-                                                    <Draggable>
+                                                    <Draggable defaultPosition={{ x: note.x, y: note.y }} onStop={(e)=>{this.updateBucket(e,note.id)}} >
                                                         <div style={{ backgroundColor: "#cef7f7", width: "200px", height: "200px" }} >
                                                             <div>
-                                                                <input value={item.bucket} onChange={(e) => { this.editNote(item.id, "bucket", e) }} />
+                                                                <input value={note.bucket} onChange={(e) => { this.editNote(note.id, "bucket", e) }} />
                                                             </div>
                                                             <div>
-                                                                <input value={item.highlight} onChange={(e) => { this.editNote(item.id, "highlight", e) }} />
+                                                                <input value={note.highlight} onChange={(e) => { this.editNote(note.id, "highlight", e) }} />
                                                             </div>
-                                                            <button onClick={() => { this.deletNote(item.id) }} >
+                                                            <button onClick={() => { this.deletNote(note.id) }} >
                                                                 Delete
                                                             </button>
                                                         </div>

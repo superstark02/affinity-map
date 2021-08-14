@@ -170,7 +170,7 @@ class BucketView extends Component {
                                     <div variant="contain" className="btns" onClick={this.toggleZoom} >
                                         Zoom On
                                     </div>
-                                    <Link >
+                                    <Link to="/group">
                                         <div className="btns">
                                             Group Highlights
                                         </div>
