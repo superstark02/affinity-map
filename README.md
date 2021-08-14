@@ -13,7 +13,7 @@
 ![Add highlights](./standard.gif)
 
 ### Sorting Mode
-![Add bucket](./sort.gif)
+![Add bucket](./sort1.gif)
 
 ### Grouping Highlights
 ![Pan And Zoom](./grouping.gif)
