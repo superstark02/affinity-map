@@ -207,19 +207,16 @@ class BucketView extends Component {
                                             Group Highlights
                                         </div>
                                     </Link>
-                                    <a href="https://github.com/superstark02/affiliate-map" >
+                                    <a href="https://github.com/superstark02/affinity-map" >
                                         <div className="btns-i" >
                                             <img title="Go To Source Code" src="https://img.icons8.com/material-outlined/24/000000/github.png" width="15px" />
                                         </div>
                                     </a>
-                                    <a href="https://drive.google.com/file/d/1YFMy3DLDIFezlxw42Cqgj4A9AgCiiL1L/view?usp=sharing" >
+                                    <a href="https://drive.google.com/file/d/13fF1Y_K71xic4MtGzkpUlqZb8FUqkUMX/view?usp=sharing" >
                                         <div className="btns-i" >
                                             <img title="Go To Video" src="https://img.icons8.com/material-outlined/24/000000/video.png" width="15px" />
                                         </div>
                                     </a>
-                                    <div className="btns-i" >
-                                        <img title="Open Info" onClick={() => { this.setState({ openInfo: true }) }} src="https://img.icons8.com/material-outlined/24/000000/info.png" width="15px" />
-                                    </div>
                                 </div>
                             </div>
 
