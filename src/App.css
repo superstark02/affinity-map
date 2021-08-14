@@ -1,38 +1,66 @@
-.App {
+.app-bar{
+  width: 100%;
+  padding: 10px 0px;
+  background-color: white;
   text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+  color: black;
+  font-size: 20px;
+  font-weight: 700;
+  position: relative;
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.btn{
+  position: absolute;
+  right: 0;
+  display: flex;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.btns{
+  color: rgba(255, 255, 255, 1);
+  font-size: 15px;
+  font-weight: 500;
+  background-color: rgba(0, 0, 0, 1);
+  margin-right: 20px;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.btns-i{
+  font-size: 15px;
+  font-weight: 500;
+  background-color: white;
+  margin-right: 20px;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.btns:hover{
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.bucket-ctn{
+  position: absolute;
+  z-index: -1;
+  height: 100vh;
+  width: 100vh;
+  display: flex;
+  justify-content: center;
+}
+
+.bucket{
+  height: 50vh;
+  width: 30%;
+  background-color: #ece9ec;
+  border: solid 10px white;
+  display: flex;
+  padding: 10px;
+  justify-content: space-between;
+}
+
+.bucket-name{
+  font-size: 10px;
+  text-align: center;
+  font-weight: 800;
 }
