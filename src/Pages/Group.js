@@ -106,7 +106,7 @@ class Group extends Component {
         var sec = 1150 / this.state.buckets.length;
 
         for (var k = 0; k < this.state.buckets.length; k++) {
-            if (e.x > (sec * k) + 150 && e.x < (sec * (k+1)) + 150) {
+            if (e.x > (sec * k) + 150 && e.x < (sec * (k + 1)) + 150) {
                 var i
                 for (i = 0; i < this.state.notes.length; i++) {
                     if (id == this.state.notes[i].id) {
@@ -117,7 +117,8 @@ class Group extends Component {
 
                 arr[i].bucket = this.state.buckets[k].id
 
-                this.setState({notes:arr})
+                this.setState({ notes: arr })
+                //rdb.ref().child("notes").set(arr)
             }
         }
 
@@ -139,6 +140,10 @@ class Group extends Component {
         }
         this.setState({ notes: arr })*/
         console.log(e)
+    }
+
+    save = () => {
+        rdb.ref().child("notes").set(this.state.notes)
     }
 
     componentDidMount() {
@@ -195,7 +200,7 @@ class Group extends Component {
     }
 
     render() {
-        if (true) {
+        if (this.state.scale) {
             return (
                 <TransformWrapper
                     initialScale={this.state.scale}
@@ -220,9 +225,20 @@ class Group extends Component {
                                     <div variant="contain" className="btns" onClick={this.addNote} >
                                         Add
                                     </div>
-                                    <div variant="contain" className="btns" onClick={this.toggleZoom} >
-                                        Zoom On
+                                    <div variant="contain" className="btns" onClick={this.save} >
+                                        Save
                                     </div>
+                                    {
+                                        !this.state.disablePan ? (
+                                            <div variant="contain" className="btns" onClick={this.toggleZoom} >
+                                                Zoom On
+                                            </div>
+                                        ) : (
+                                            <div variant="contain" className="btns" onClick={this.toggleZoom} >
+                                                Zoom Off
+                                            </div>
+                                        )
+                                    }
                                     <Link >
                                         <div className="btns">
                                             Group Highlights
@@ -251,7 +267,7 @@ class Group extends Component {
                                         {
                                             this.state.notes.map(note => {
                                                 return (
-                                                    <Draggable defaultPosition={{ x: note.x, y: note.y }} onStop={(e)=>{this.updateBucket(e,note.id)}} >
+                                                    <Draggable defaultPosition={{ x: note.x, y: note.y }} onStop={(e) => { this.updateBucket(e, note.id) }} >
                                                         <div style={{ backgroundColor: "#cef7f7", width: "200px", height: "200px" }} >
                                                             <div>
                                                                 <input value={note.bucket} onChange={(e) => { this.editNote(note.id, "bucket", e) }} />

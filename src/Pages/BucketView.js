@@ -60,24 +60,30 @@ class BucketView extends Component {
             bucket: "New Bucket",
             highlight: "New Highlight",
             x: 0,
-            y: 0
+            y: 0,
+            offsetX: 0,
+            offsetY: 0,
         })
         rdb.ref().child("notes").set(arr)
         this.setState({ notes: arr })
     }
 
     deletNote = (id) => {
-        var i
-        for (i = 0; i < this.state.notes.length; i++) {
-            if (id == this.state.notes[i].id) {
-                break;
+        if (this.state.notes.length > 1) {
+            var i
+            for (i = 0; i < this.state.notes.length; i++) {
+                if (id == this.state.notes[i].id) {
+                    break;
+                }
             }
-        }
-        var arr = this.state.notes
-        arr.splice(i, 1)
+            var arr = this.state.notes
+            arr.splice(i, 1)
 
-        this.setState({ notes: arr })
-        rdb.ref().child("notes").set(arr)
+            this.setState({ notes: arr })
+            rdb.ref().child("notes").set(arr)
+        }else{
+            alert("Atleast one highlight should be there, world must not be empty :)")
+        }
     }
 
     editNote = (id, type, e) => {
@@ -111,27 +117,45 @@ class BucketView extends Component {
 
         arr[i].x = e.x
         arr[i].y = e.y
-        rdb.ref().child("notes").child(i).update({ x: e.x, y: e.y })
+        rdb.ref().child("notes").child(i).update({ x: e.x, y: e.y, offsetX: e.offsetX, offsetY: e.offsetY })
 
         for (var i = 0; i < arr.length; i++) {
             for (var j = 0; j < arr.length; j++) {
-                if (arr[i].x - arr[j].x < 150 && arr[i].x - arr[j].x > 0) {
+                if (arr[i].x - arr[j].x < 150 && arr[i].x - arr[j].x > 0 && Math.abs(arr[i].y - arr[j].y) < 100) {
                     arr[i].bucket = arr[j].bucket;
                 }
-                else if (arr[j].x - arr[i].x < 150 && arr[j].x - arr[i].x > 0) {
+                else if (arr[j].x - arr[i].x < 150 && arr[j].x - arr[i].x > 0 && Math.abs(arr[i].y - arr[j].y) < 100) {
                     arr[j].bucket = arr[i].bucket;
                 }
             }
         }
-
-        console.log(e)
-
+        //console.log(e)
+        rdb.ref().child("notes").set(arr)
         this.setState({ notes: arr })
     }
 
     componentDidMount() {
         rdb.ref().child("notes").on('value', (snapshot) => {
-           this.setState({ notes: snapshot.val() })
+            if (snapshot.val()) {
+                this.setState({ notes: snapshot.val() })
+            }
+            else {
+                var d = new Date();
+                var n = d.getTime();
+                var arr = [
+                    {
+                        id: n,
+                        bucket: "New Bucket",
+                        highlight: "New Highlight",
+                        x: 0,
+                        y: 0,
+                        offsetX: 0,
+                        offsetY: 0,
+                    }
+                ]
+
+                this.setState({ notes: arr })
+            }
         });
 
         rdb.ref().child("PanZoom").on('value', (snapshot) => {
@@ -142,7 +166,7 @@ class BucketView extends Component {
     }
 
     render() {
-        if (true) {
+        if (this.state.scale) {
             return (
                 <TransformWrapper
                     initialScale={this.state.scale}
@@ -167,9 +191,17 @@ class BucketView extends Component {
                                     <div variant="contain" className="btns" onClick={this.addNote} >
                                         Add
                                     </div>
-                                    <div variant="contain" className="btns" onClick={this.toggleZoom} >
-                                        Zoom On
-                                    </div>
+                                    {
+                                        !this.state.disablePan ? (
+                                            <div variant="contain" className="btns" onClick={this.toggleZoom} >
+                                                Zoom On
+                                            </div>
+                                        ) : (
+                                            <div variant="contain" className="btns" onClick={this.toggleZoom} >
+                                                Zoom Off
+                                            </div>
+                                        )
+                                    }
                                     <Link to="/group">
                                         <div className="btns">
                                             Group Highlights
@@ -223,8 +255,8 @@ class BucketView extends Component {
                 </TransformWrapper>
             );
         }
-        else{
-            return(<div>Loading</div>)
+        else {
+            return (<div>Loading</div>)
         }
     }
 }
