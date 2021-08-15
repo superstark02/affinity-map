@@ -34,5 +34,5 @@
 * Hosting Link : https://afinity-map.web.app/
 * Exaplaination Video : https://drive.google.com/file/d/13fF1Y_K71xic4MtGzkpUlqZb8FUqkUMX/view?usp=sharing
 
-## I added all the features required, to my understabding. Thank you 
+## I added all the features required, to my understanding. Thank you 
 
