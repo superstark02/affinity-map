@@ -9,7 +9,8 @@
     - Add/Delet/Edit Buckets
     - Zoom In/Out Affinity Map 
 
-### Standard Mode
+### Standard Mode 
+(Reload the page if GIF appears blank)
 ![Add highlights](./standard.gif)
 
 ### Sorting Mode
