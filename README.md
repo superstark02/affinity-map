@@ -1,39 +1,15 @@
-# Affinity Map - Dipit Sharma 2K19/CO/127 📋 
+# API Calls - Dipit Sharma 2K19/CO/127 📋 
 
-#### If you still have quesries about the code, please free to contact me. This project was made in a few amount of time it may lack some efficiency 👍
+#### If you still have queries about the code, please free to contact me. This project was made in a few amount of time it may lack some efficiency 👍
 
 ## Features:
+- Gets 10 random images of dogs whe nthe website is loaded
+- 10 API calls are made using `for` loop
+- When all data (images) is loaded, then they are rendered on the screen
+- You can see in console, first 10 calls are made and images are logged, when 10 images are done, they are rendered in grid view.
+- axios library used for GET API call
 
-    - Add/Delet/Edit Highlights 
-    - Group/Move Highlights
-    - Add/Delet/Edit Buckets
-    - Zoom In/Out Affinity Map 
+## Hosted here: https://raodcast-rocks.web.app/
 
-### Standard Mode 
-(Reload the page if GIF appears blank)
-![Add highlights](./standard.gif)
-
-### Sorting Mode
-![Add bucket](./sort1.gif)
-
-### Grouping Highlights
-![Pan And Zoom](./grouping.gif)
-
-## Folder Architecture (src) :
-
-    - pages ( contains main - home page, and grouping page)
-        - BucketView.js
-        - Grouping.js
-
-## To set Up On Local Machine:
-
-    - git clone https://github.com/superstark02/affinity-map
-    - npm i
-    - npm start
-
-## More information
-* Hosting Link : https://afinity-map.web.app/
-* Exaplaination Video : https://drive.google.com/file/d/13fF1Y_K71xic4MtGzkpUlqZb8FUqkUMX/view?usp=sharing
-
-## I added all the features required, to my understanding. Thank you 
+## I hope added all the features required. Thank you 
 

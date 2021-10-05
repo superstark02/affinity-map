@@ -1,6 +1,7 @@
 {
   "hosting": {
     "public": "build",
+    "site": "raodcast-rocks",
     "ignore": [
       "firebase.json",
       "**/.*",
